@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>R Verse Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #111217;
+      --text: #ffffff;
+      --text-muted: #d1d5db;
+      --accent: #4f46e5;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header with logo lowered */
+    .header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 25px;
+      padding-left: 91px;
+      margin-top: 0px;
+    }
+
+    /* Logo at 100px */
+    .logo {
+      width: 100px;
+      height: auto;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(85%) sepia(5%)
+              saturate(200%) hue-rotate(180deg) brightness(110%) contrast(90%);
+    }
+
+    /* Increased spacing below logo */
+    .main {
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .division-link {
+      font-size: 35px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      line-height: 1.25;
+      white-space: nowrap;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease-out;
+      cursor: pointer;
+    }
+
+    .division-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-secondary {
+      margin-top: 49px;
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .nav-link {
+      font-size: 16px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 0.2s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="header">
+      <a href="index.html">
+        <img src="images/rverse2.png" class="logo" alt="R Verse Logo">
+      </a>
+    </header>
+
+    <main class="main">
+      <a href="rversesolutions_business-identity.html" class="division-link">BUSINESS IDENTITY</a>
+      <a href="rversesolutions_concept-development.html" class="division-link">CONCEPT DEVELOPMENT</a>
+      <a href="rversesolutions_operations-support.html" class="division-link">OPERATIONS SUPPORT</a>
+      <a href="rversesolutions_digital-operations.html" class="division-link">DIGITAL OPERATIONS</a>
+      <a href="rversesolutions_operational-strategy.html" class="division-link">OPERATIONAL STRATEGY</a>
+
+      <nav class="nav-secondary">
+        <a href="rversesolutions_about.html" class="nav-link">ABOUT</a>
+        <a href="rversesolutions_contact.html" class="nav-link">CONTACT</a>
+      </nav>
+    </main>
+
+  </div>
+</body>
+</html>

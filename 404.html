@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Error — R Verse Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #111217;
+      --text: #ffffff;
+      --text-muted: #d1d5db;
+      --accent: #330099;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    .header {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 25px 91px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .logo {
+      width: 100px;
+      filter: brightness(0) invert(1);
+    }
+
+    .menu-btn {
+      font-size: 36px;
+      cursor: pointer;
+      color: var(--text);
+      user-select: none;
+      position: absolute;
+      top: 25px;
+      right: 91px;
+      z-index: 50;
+    }
+
+    .close-inside {
+      position: absolute;
+      top: 25px;
+      right: 91px;
+      font-size: 36px;
+      color: #ffffff;
+      cursor: pointer;
+      z-index: 60;
+      display: none;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      z-index: 25;
+    }
+
+    /* SLIDER */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      right: -96%;
+      width: 96%;
+      height: 100%;
+      background: var(--bg);
+      padding: 25px 35px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.45s ease;
+      z-index: 30;
+    }
+
+    .menu-center {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .menu-center a.division {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 35px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: color 0.2s ease-out;
+    }
+
+    .menu-center a.division:hover {
+      color: var(--accent);
+    }
+
+    .menu-bottom {
+      margin-top: 49px;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .menu-bottom a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s ease-out;
+    }
+
+    .menu-bottom a:hover {
+      color: #ffffff;
+    }
+
+    /* STICKY BAR */
+    .sticky-bar {
+      position: fixed;
+      top: -75px;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: linear-gradient(to bottom, #111217 70%, #330099 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 91px;
+      z-index: 999;
+      transition: top 0.25s ease-out;
+    }
+
+    .sticky-bar img {
+      width: 100px;
+      filter: brightness(0) invert(1);
+    }
+
+    .sticky-menu-btn {
+      font-size: 36px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* ERROR SECTION */
+    .error-section {
+      width: 100%;
+      background: var(--accent);
+      padding: 180px 0 160px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .error-inner {
+      width: 90%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .error-title {
+      font-size: 120px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+    }
+
+    .error-text {
+      font-size: 30px;
+      line-height: 1.7;
+      color: #ffffff;
+      max-width: 700px;
+      opacity: 0.95;
+    }
+
+    .error-btn {
+      margin-top: 35px;
+      padding: 16px 42px;
+      background: transparent;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 50px;
+      border: 2px solid #ffffff;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .error-btn:hover {
+      opacity: 0.7;
+    }
+
+    /* FOOTER */
+    .footer {
+      width: 100%;
+      background: var(--accent);
+      padding: 60px 0 40px 0;
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .footer-inner {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      width: 180px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.7;
+    }
+
+    .footer-bottom {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto 0 auto;
+      font-size: 12px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+  </style>
+
+  <script>
+    function openMenu() {
+      document.getElementById("sideNav").style.right = "0";
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("hamburgerBtn").style.display = "none";
+      document.getElementById("closeBtn").style.display = "block";
+      document.body.style.overflow = "hidden";
+      document.getElementById("stickyBar").style.display = "none";
+    }
+
+    function closeMenu() {
+      document.getElementById("sideNav").style.right = "-96%";
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("hamburgerBtn").style.display = "block";
+      document.getElementById("closeBtn").style.display = "none";
+      document.body.style.overflow = "";
+      document.getElementById("stickyBar").style.display = "flex";
+    }
+
+    let stickyBar = null;
+    window.addEventListener("DOMContentLoaded", () => {
+      stickyBar = document.getElementById("stickyBar");
+    });
+
+    let headerHeight = 120;
+    let delayOffset = 80;
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > headerHeight + delayOffset) {
+        stickyBar.style.top = "0";
+      } else {
+        stickyBar.style.top = "-75px";
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html">
+      <img src="images/rverse2.png" class="logo" alt="R Verse Logo">
+    </a>
+    <div id="hamburgerBtn" class="menu-btn" onclick="openMenu()">☰</div>
+  </header>
+
+  <!-- STICKY BAR -->
+  <div id="stickyBar" class="sticky-bar">
+    <a href="index.html">
+      <img src="images/rverse2.png" alt="R Logo">
+    </a>
+    <div class="sticky-menu-btn" onclick="openMenu()">☰</div>
+  </div>
+
+  <!-- OVERLAY -->
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <!-- SLIDER -->
+  <nav id="sideNav" class="side-nav">
+    <div id="closeBtn" class="close-inside" onclick="closeMenu()">✕</div>
+
+    <a href="index.html">
+      <img src="images/rverse2.png" class="logo" alt="R Verse Logo">
+    </a>
+
+    <div class="menu-center">
+      <a href="rversesolutions_business-identity.html" class="division">BUSINESS IDENTITY</a>
+      <a href="rversesolutions_concept-development.html" class="division">CONCEPT DEVELOPMENT</a>
+      <a href="rversesolutions_operations-support.html" class="division">OPERATIONS SUPPORT</a>
+      <a href="rversesolutions_digital-operations.html" class="division">DIGITAL OPERATIONS</a>
+      <a href="rversesolutions_operational-strategy.html" class="division">OPERATIONAL STRATEGY</a>
+
+      <div class="menu-bottom">
+        <a href="rversesolutions_about.html">ABOUT</a>
+        <a href="rversesolutions_contact.html">CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ERROR SECTION -->
+  <section class="error-section">
+    <div class="error-inner">
+      <div class="error-title">PAGE NOT FOUND</div>
+
+      <div class="error-text">
+        We’re sorry, the page you’re looking for can’t be found.
+      </div>
+
+      <a href="index.html" class="error-btn">
+        GO BACK TO OUR HOMEPAGE
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html">
+        <img src="images/rverse2.png" class="footer-logo">
+      </a>
+      <div class="footer-links">
+        <a href="rversesolutions_about.html">About Us</a>
+        <a href="rversesolutions_contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 R VERSE SOLUTIONS — All Rights Reserved
+    </div>
+  </footer>
+
+</body>
+</html>
